@@ -1,7 +1,18 @@
+import Image from "next/image";
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white flex items-center justify-center">
-      <div className="text-center px-6">
+      <div className="text-center px-6 animate-fadeIn">
+        
+        <Image
+          src="/logo.png"
+          alt="SolutionEletronic"
+          width={140}
+          height={140}
+          className="mx-auto mb-6"
+        />
+
         <h1 className="text-4xl md:text-6xl font-bold mb-4">
           Solution<span className="text-blue-500">Eletronic</span>
         </h1>
@@ -15,6 +26,7 @@ export default function Home() {
           <p>📞 (55) 92 98508-0617</p>
           <p>🔐 Segurança Eletrônica & Tecnologia</p>
         </div>
+
       </div>
     </main>
   );
