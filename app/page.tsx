@@ -1,99 +1,113 @@
+import Image from "next/image";
+
 export default function Home() {
   return (
-    <main className="pt-24 bg-black text-white min-h-screen">
+    <main className="pt-24 bg-black text-white">
+      {/* HERO */}
+      <section className="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-center">
+        {/* TEXTO */}
+        <div className="space-y-6 animate-fadeIn">
+          <h1 className="text-4xl md:text-5xl font-bold leading-tight">
+            Tecnologia que protege. <br />
+            <span className="text-blue-500">Soluções que conectam.</span>
+          </h1>
 
-      {/* HERO / TOPO */}
-      <section
-        id="inicio"
-        className="flex flex-col items-center justify-center text-center min-h-[90vh] px-6"
-      >
-        <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fadeIn">
-          Solution <span className="text-blue-500">Eletronic</span>
-        </h1>
+          <p className="text-gray-300 text-lg">
+            Segurança eletrônica, controle de acesso, automação e soluções
+            tecnológicas sob medida para residências e empresas.
+          </p>
 
-        <p className="text-lg md:text-xl text-gray-300 max-w-2xl mb-10 animate-fadeIn">
-          Tecnologia que protege. Soluções que conectam.
-        </p>
+          {/* BOTÕES */}
+          <div className="flex flex-col sm:flex-row gap-4">
+            <a
+              href="https://wa.me/5592985080617"
+              target="_blank"
+              className="bg-green-500 hover:bg-green-600 text-black font-semibold px-6 py-3 rounded-lg text-center transition"
+            >
+              Falar no WhatsApp
+            </a>
 
-        <a
-          href="https://wa.me/5592985080617"
-          target="_blank"
-          className="bg-green-500 hover:bg-green-400 text-black px-8 py-4 rounded-full font-semibold transition"
-        >
-          Falar no WhatsApp
-        </a>
+            <a
+              href="#servicos"
+              className="border border-gray-600 hover:border-white px-6 py-3 rounded-lg text-center transition"
+            >
+              Nossos Serviços
+            </a>
+          </div>
+        </div>
+
+        {/* LOGO EM DESTAQUE */}
+        <div className="flex justify-center md:justify-end animate-fadeIn">
+          <div className="bg-white rounded-2xl p-6 shadow-2xl">
+            <Image
+              src="/logo.png"
+              alt="Solution Eletronic"
+              width={600}
+              height={600}
+              priority
+              className="
+                w-72
+                sm:w-80
+                md:w-[420px]
+                lg:w-[500px]
+                h-auto
+              "
+            />
+          </div>
+        </div>
       </section>
 
       {/* SERVIÇOS */}
       <section
         id="servicos"
-        className="py-24 px-6 bg-gradient-to-b from-black to-gray-900"
+        className="bg-zinc-900 py-24 px-6 animate-fadeIn"
       >
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-14">
-          Nossos <span className="text-blue-500">Serviços</span>
-        </h2>
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-3xl font-bold mb-14 text-center">
+            Nossos Serviços
+          </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-
-          <div className="bg-white/5 p-8 rounded-xl hover:bg-white/10 transition">
-            <h3 className="text-xl font-semibold mb-3">
-              Segurança Eletrônica
-            </h3>
-            <p className="text-sm text-gray-300">
-              Sistemas de câmeras, alarmes e monitoramento inteligente.
-            </p>
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
+            {[
+              "Câmeras de Segurança",
+              "Controle de Acesso",
+              "Automação de Portões",
+              "Manutenção Eletrônica",
+              "Redes e Informática",
+              "Soluções Personalizadas",
+            ].map((servico, index) => (
+              <div
+                key={index}
+                className="bg-black border border-zinc-700 rounded-xl p-6 hover:border-blue-500 transition"
+              >
+                <h3 className="text-xl font-semibold mb-2">{servico}</h3>
+                <p className="text-gray-400 text-sm">
+                  Tecnologia moderna com instalação profissional e suporte
+                  especializado.
+                </p>
+              </div>
+            ))}
           </div>
-
-          <div className="bg-white/5 p-8 rounded-xl hover:bg-white/10 transition">
-            <h3 className="text-xl font-semibold mb-3">
-              Controle de Acesso
-            </h3>
-            <p className="text-sm text-gray-300">
-              Biometria, fechaduras eletrônicas, portas, portões e cancelas.
-            </p>
-          </div>
-
-          <div className="bg-white/5 p-8 rounded-xl hover:bg-white/10 transition">
-            <h3 className="text-xl font-semibold mb-3">
-              Suporte Técnico
-            </h3>
-            <p className="text-sm text-gray-300">
-              Manutenção em computadores, placas eletrônicas e sistemas.
-            </p>
-          </div>
-
         </div>
       </section>
 
-      {/* CHAMADA FINAL */}
-      <section className="py-24 px-6 text-center bg-black">
-        <h2 className="text-3xl md:text-4xl font-bold mb-6">
-          Precisa de uma solução confiável?
+      {/* CTA FINAL */}
+      <section className="py-24 text-center px-6 animate-fadeIn">
+        <h2 className="text-3xl font-bold mb-4">
+          Precisa de uma solução agora?
         </h2>
-
-        <p className="text-gray-300 mb-8">
-          Atendemos Manaus e região com tecnologia e compromisso.
+        <p className="text-gray-400 mb-8">
+          Fale direto no WhatsApp e solicite um orçamento sem compromisso.
         </p>
 
         <a
           href="https://wa.me/5592985080617"
           target="_blank"
-          className="inline-block bg-green-500 hover:bg-green-400 text-black px-10 py-4 rounded-full font-semibold transition"
+          className="inline-block bg-green-500 hover:bg-green-600 text-black font-semibold px-10 py-4 rounded-xl transition"
         >
-          Solicitar Orçamento
+          Chamar no WhatsApp
         </a>
       </section>
-
-      {/* RODAPÉ */}
-      <footer className="border-t border-white/10 py-8 text-center text-sm text-gray-400">
-        <p>
-          © {new Date().getFullYear()} Solution Eletronic — Todos os direitos reservados
-        </p>
-        <p className="mt-2">
-          Tecnologia que protege. Soluções que conectam.
-        </p>
-      </footer>
-
     </main>
   );
 }
