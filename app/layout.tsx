@@ -4,8 +4,13 @@ import { ReactNode } from "react";
 export const metadata = {
   title: "SolutionEletronic | Segurança Eletrônica em Manaus",
   description:
-    "SolutionEletronic oferece soluções em segurança eletrônica, CFTV, controle de acesso, biometria e tecnologia em Manaus-AM.",
+    "Segurança eletrônica, CFTV, controle de acesso e tecnologia em Manaus-AM.",
+  viewport: "width=device-width, initial-scale=1",
+  icons: {
+    icon: "/favicon.png",
+  },
 };
+
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
