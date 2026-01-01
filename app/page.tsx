@@ -21,6 +21,12 @@ export default function Home() {
         <p className="text-xl md:text-2xl text-gray-300 mb-6">
           Tecnologia que protege. Soluções que conectam.
         </p>
+        <a
+  href="/servicos"
+  className="inline-block mt-6 text-blue-400 hover:text-blue-300 underline"
+>
+  Ver todos os serviços →
+</a>
 
         <p className="text-gray-400">
           📍 Manaus - AM • 📞 (55) 92 98508-0617
