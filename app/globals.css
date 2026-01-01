@@ -38,3 +38,17 @@ body {
 .animate-fadeIn {
   animation: fadeIn 1.2s ease-out;
 }
+@keyframes logoZoom {
+  0% {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-logo {
+  animation: logoZoom 1.2s ease-out forwards;
+}
