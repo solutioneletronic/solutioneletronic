@@ -48,7 +48,3 @@ body {
     transform: translateY(0);
   }
 }
-
-.animate-fadeIn {
-  animation: fadeIn 1.2s ease-out;
-}
