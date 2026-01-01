@@ -1,23 +1,24 @@
 import "./globals.css";
-import { ReactNode } from "react";
-import Header from "./components/Header";
+import type { Metadata } from "next";
+import Navbar from "./components/Navbar";
 
-export const metadata = {
-  title: "SolutionEletronic | Segurança Eletrônica em Manaus",
-  description:
-    "Segurança eletrônica, CFTV, controle de acesso e tecnologia em Manaus-AM.",
-  viewport: "width=device-width, initial-scale=1",
-  icons: {
-    icon: "/favicon.png",
-  },
+export const metadata: Metadata = {
+  title: "Solution Eletronic",
+  description: "Tecnologia que protege. Soluções que conectam.",
 };
 
-
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="pt-BR">
       <body className="bg-black text-white antialiased">
-        <Header/>
+        {/* NAVBAR */}
+        <Navbar />
+
+        {/* CONTEÚDO DAS PÁGINAS */}
         {children}
       </body>
     </html>
