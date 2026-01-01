@@ -1,5 +1,6 @@
 import "./globals.css";
 import { ReactNode } from "react";
+import Header from "./components/Header";
 
 export const metadata = {
   title: "SolutionEletronic | Segurança Eletrônica em Manaus",
@@ -16,6 +17,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="pt-BR">
       <body className="bg-black text-white antialiased">
+        <Header/>
         {children}
       </body>
     </html>
