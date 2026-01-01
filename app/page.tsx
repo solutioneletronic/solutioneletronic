@@ -20,7 +20,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
 export default function Home() {
   return (
-    <main className="bg-gradient-to-br from-black via-gray-900 to-black text-white min-h-screen">
+    <main className="bg-gradient-to-br from-black via-gray-900 to-black text-white min-h-screen pt-24">
 
       {/* HERO PREMIUM */}
       <section className="min-h-screen flex flex-col items-center justify-center text-center px-4 sm:px-6 animate-fadeIn">
