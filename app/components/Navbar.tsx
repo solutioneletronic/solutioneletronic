@@ -1,25 +1,42 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  // Detecta scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-black border-b border-zinc-800">
+    <header
+      className={`
+        fixed top-0 left-0 w-full z-50 transition-all duration-300
+        ${scrolled ? "bg-black shadow-lg" : "bg-transparent"}
+      `}
+    >
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         {/* LOGO */}
         <Link href="/" className="flex items-center gap-3">
-          <Image
-            src="/logo.png"
-            alt="Solution Eletronic"
-            width={48}
-            height={48}
-            priority
-            className="bg-white rounded-md p-1"
-          />
+          <div className="bg-white rounded-md p-1">
+            <Image
+              src="/logo.png"
+              alt="Solution Eletronic"
+              width={44}
+              height={44}
+              priority
+            />
+          </div>
           <span className="font-bold text-lg text-white">
             Solution Eletronic
           </span>
@@ -52,13 +69,19 @@ export default function Navbar() {
           className="md:hidden text-white text-3xl"
           aria-label="Abrir menu"
         >
-          ☰
+          {open ? "✕" : "☰"}
         </button>
       </div>
 
-      {/* MENU MOBILE */}
-      {open && (
-        <div className="md:hidden bg-black border-t border-zinc-800 px-6 py-6 space-y-4">
+      {/* MENU MOBILE ANIMADO */}
+      <div
+        className={`
+          md:hidden overflow-hidden transition-all duration-300
+          ${open ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}
+          bg-black border-t border-zinc-800
+        `}
+      >
+        <div className="px-6 py-6 space-y-4">
           <Link
             href="/"
             onClick={() => setOpen(false)}
@@ -91,7 +114,7 @@ export default function Navbar() {
             Falar no WhatsApp
           </a>
         </div>
-      )}
+      </div>
     </header>
   );
 }
