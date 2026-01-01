@@ -23,7 +23,7 @@ export default function Home() {
     <main className="bg-gradient-to-br from-black via-gray-900 to-black text-white min-h-screen">
 
       {/* HERO PREMIUM */}
-      <section className="min-h-screen flex flex-col items-center justify-center text-center px-6 animate-fadeIn">
+      <section className="min-h-screen flex flex-col items-center justify-center text-center px-4 sm:px-6 animate-fadeIn">
         <Image
           src="/logo.png"
           alt="SolutionEletronic"
@@ -32,11 +32,11 @@ export default function Home() {
           className="mb-8"
         />
 
-        <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6">
+        <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight mb-6">
           Solution<span className="text-blue-500">Eletronic</span>
         </h1>
 
-        <p className="text-2xl md:text-3xl text-gray-300 mb-8 max-w-3xl">
+        <p className="text-lg sm:text-xl md:text-3xl text-gray-300 mb-8 max-w-3xl">
           Tecnologia que protege. Soluções que conectam.
         </p>
 
@@ -96,7 +96,7 @@ export default function Home() {
       <a
         href="https://wa.me/5592985080617"
         target="_blank"
-        className="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-black px-5 py-4 rounded-full shadow-2xl text-xl"
+        className="fixed bottom-5 bg-green-500 hover:bg-green-600 text-black px-5 py-4 rounded-full shadow-2xl text-2xl"
       >
         💬
       </a>
