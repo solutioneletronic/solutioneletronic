@@ -16,11 +16,36 @@ export default function Navbar() {
   const [manual, setManual] = useState(false);
 
   /* ================= HEADER SCROLL ================= */
+  
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const syncActive = () => {
+    if (window.location.pathname === "/contato") {
+      setActive("contato");
+      return;
+    }
+
+    if (window.location.pathname === "/") {
+      const hash = window.location.hash;
+
+      if (hash === "#servicos") {
+        setActive("servicos");
+      } else {
+        setActive("home");
+      }
+    }
+  };
+
+  syncActive(); // executa ao montar
+
+  window.addEventListener("hashchange", syncActive);
+  window.addEventListener("popstate", syncActive);
+
+  return () => {
+    window.removeEventListener("hashchange", syncActive);
+    window.removeEventListener("popstate", syncActive);
+  };
+}, []);
+
 
   /* ================= SCROLL SPY (SÓ NA HOME) ================= */
   useEffect(() => {
