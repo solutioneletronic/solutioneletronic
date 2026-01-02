@@ -60,9 +60,8 @@ export default function Navbar() {
   }, [pathname, manual]);
 
   /* ================= CLIQUE DO MENU ================= */
-  const handleClick = (id: Section) => {
-    setManual(true);
-    setActive(id);
+  const handleClick = (section: Section) => {
+    setActive(section);
     setOpen(false);
 
     setTimeout(() => {
