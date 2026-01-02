@@ -189,13 +189,14 @@ export default function Navbar() {
 
           {/* LOGO */}
           <Link href="/" onClick={() => handleClick("home")} className="flex items-center gap-3">
-            <div className="bg-white rounded-lg p-1.5 shadow-lg">
+            <div className="rounded-lg p-2 bg-black/30 backdrop-blur">
               <Image
                 src="/logo.png"
                 alt="Solution Eletronic"
-                width={52}
-                height={52}
+                width={54}
+                height={54}
                 priority
+                className="object-contain"
               />
             </div>
             <span className="font-bold text-lg md:text-xl text-white">
