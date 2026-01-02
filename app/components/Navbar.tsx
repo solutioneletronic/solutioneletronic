@@ -196,7 +196,7 @@ export default function Navbar() {
                 width={54}
                 height={54}
                 priority
-                className="object-contain"
+                className="object-contain drop-shadow-md"
               />
             </div>
             <span className="font-bold text-lg md:text-xl text-white">
