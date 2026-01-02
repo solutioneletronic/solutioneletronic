@@ -215,7 +215,7 @@ export default function Navbar() {
               {glow("servicos")}
             </Link>
 
-            <Link href="/contato" onClick={() => handleClick("contato")} className={linkClass("contato")}>
+            <Link href="/#contato" onClick={() => handleClick("contato")} className={linkClass("contato")}>
               Contato
               {glow("contato")}
             </Link>
