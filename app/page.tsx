@@ -37,15 +37,15 @@ export default function Home() {
         </div>
 
         {/* LOGO EM DESTAQUE */}
-        <div className="flex justify-center md:justify-end animate-fadeIn">
-          <div className="bg-white rounded-2xl p-6 shadow-2xl nimete-logo">
+        <div className="flex justify-center">
+          <div className="bg-white rounded-2xl p-6">
             <Image
-              src="/logo.png"
+              src="/logo.png" 
               alt="Solution Eletronic"
               width={600}
               height={600}
               priority
-              className="
+              className= drop-shadow-[0_0_18px_rgba(59,130,2460,0.45)]"
                 w-72
                 sm:w-80
                 md:w-[420px]
