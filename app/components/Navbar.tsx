@@ -114,7 +114,7 @@ export default function Navbar() {
               "
             />
             <span className="font-bold text-lg md:text-xl text-white">
-              SolutionEletronic
+              Solution Eletronic
             </span>
           </Link>
 
