@@ -38,7 +38,7 @@ export default function Home() {
 
         {/* LOGO EM DESTAQUE */}
         <div className="flex justify-center md:justify-end animate-fadeIn">
-          <div className="bg-white rounded-2xl p-6 shadow-2xl nimete-logo">
+          <div className="bg-transparent p-6 nimete-logo">
             <Image
               src="/logo.png"
               alt="Solution Eletronic"
