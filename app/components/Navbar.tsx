@@ -105,8 +105,8 @@ export default function Navbar() {
             <Image
               src="/logo_menu.png"
               alt="Solution Eletronic"
-              width={56}
-              height={56}
+              width={76}
+              height={76}
               priority
               className="
                 object-contain
