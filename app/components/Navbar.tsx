@@ -103,7 +103,7 @@ export default function Navbar() {
             className="flex items-center gap-3"
           >
             <Image
-              src="/logo1.png"
+              src="/logo_menu.png"
               alt="Solution Eletronic"
               width={56}
               height={56}
