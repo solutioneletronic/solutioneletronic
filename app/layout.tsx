@@ -1,52 +1,28 @@
-import type React from "react"
-import type { Metadata } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
-import { Analytics } from "@vercel/analytics/next"
-import "./globals.css"
-
-const _geist = Geist({ subsets: ["latin"] })
-const _geistMono = Geist_Mono({ subsets: ["latin"] })
+import "./globals.css";
+import type { Metadata } from "next";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 export const metadata: Metadata = {
-  title: "Solution Eletronic - Segurança e Automação",
-  description:
-    "Segurança eletrônica, controle de acesso, automação e soluções tecnológicas sob medida para residências e empresas.",
-  generator: "v0.app",
-  manifest: "/manifest.json",
-  icons: {
-    icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-      { url: "/favicon-48x48.png", sizes: "48x48", type: "image/png" },
-      { url: "/icon-192x192.png", sizes: "192x192", type: "image/png" },
-      { url: "/icon-512x512.png", sizes: "512x512", type: "image/png" },
-    ],
-    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
-    other: [{ rel: "mask-icon", url: "/safari-pinned-tab.svg", color: "#3b82f6" }],
-  },
-  appleWebApp: {
-    capable: true,
-    statusBarStyle: "black-translucent",
-    title: "Solution Eletronic",
-  },
-  other: {
-    "msapplication-TileColor": "#000000",
-    "msapplication-config": "/browserconfig.xml",
-  },
-}
+  title: "Solution Eletronic",
+  description: "Tecnologia que protege. Soluções que conectam.",
+};
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html lang="en">
-      <body className={`font-sans antialiased`}>
+    <html lang="pt-BR">
+      <body className="bg-black text-white antialiased">
+        {/* NAVBAR */}
+        <Navbar />
+
+        {/* CONTEÚDO DAS PÁGINAS */}
         {children}
-        <Analytics />
+        <Footer />
       </body>
     </html>
-  )
+  );
 }
