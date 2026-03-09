@@ -68,17 +68,21 @@ export default function Navbar() {
 
   /* ================= CLICK HANDLER ================= */
   const handleClick = (section: Section) => {
-    setManual(true);
     setActive(section);
     setOpen(false);
 
     // Se for contato, vai direto para o final da página
     if (section === "contato") {
+      setManual(true);
       setTimeout(() => {
         window.scrollTo(0, document.documentElement.scrollHeight);
-        setManual(false);
+        // Mantém o foco em contato mesmo depois do scroll
+        setActive("contato");
+        // Desativa manual após um tempo maior para garantir que não volta ao scroll spy
+        setTimeout(() => setManual(false), 1000);
       }, 50);
     } else {
+      setManual(true);
       setTimeout(() => setManual(false), 700);
     }
   };
