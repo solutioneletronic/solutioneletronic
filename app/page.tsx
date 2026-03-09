@@ -82,7 +82,7 @@ export default function Home() {
             {/* Botão âncora para serviços */}
             <a
               // Link interno para a seção serviços
-              href="#servicos"
+              href="servicos"
               // Botão com borda
               className="border border-gray-600 hover:border-white px-6 py-3 rounded-lg text-center transition"
             >
