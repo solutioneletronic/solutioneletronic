@@ -74,7 +74,6 @@ export default function Navbar() {
 
     // Se for contato, vai direto para o final da página
     if (section === "contato") {
-      // Vai direto para o final sem animação (funciona em web e mobile)
       setTimeout(() => {
         window.scrollTo(0, document.documentElement.scrollHeight);
         setManual(false);
@@ -96,6 +95,13 @@ export default function Navbar() {
     active === id && (
       <span className="absolute left-0 -bottom-1 h-[2px] w-full bg-blue-500 shadow-[0_0_14px_rgba(59,130,246,0.9)]" />
     );
+
+  const mobileLinkClass = (id: Section) =>
+    `block py-2 px-3 rounded transition-all duration-300 ${
+      active === id
+        ? "text-white bg-blue-500/20 border-l-4 border-blue-500"
+        : "text-gray-300 hover:text-white border-l-4 border-transparent"
+    }`;
 
   return (
     <>
@@ -127,17 +133,29 @@ export default function Navbar() {
 
           {/* MENU DESKTOP */}
           <nav className="hidden md:flex items-center gap-10">
-            <Link href="/" onClick={() => handleClick("home")} className={linkClass("home")}>
+            <Link 
+              href="/" 
+              onClick={() => handleClick("home")} 
+              className={linkClass("home")}
+            >
               Início
               {glow("home")}
             </Link>
 
-            <Link href="/#servicos" onClick={() => handleClick("servicos")} className={linkClass("servicos")}>
+            <Link 
+              href="/#servicos" 
+              onClick={() => handleClick("servicos")} 
+              className={linkClass("servicos")}
+            >
               Serviços
               {glow("servicos")}
             </Link>
 
-            <Link href="/#contato" onClick={() => handleClick("contato")} className={linkClass("contato")}>
+            <Link 
+              href="/#contato" 
+              onClick={() => handleClick("contato")} 
+              className={linkClass("contato")}
+            >
               Contato
               {glow("contato")}
             </Link>
@@ -170,13 +188,11 @@ export default function Navbar() {
         {/* MOBILE MENU */}
         {open && (
           <nav className="md:hidden bg-black/90 backdrop-blur-xl border-t border-white/10">
-            <div className="px-6 py-4 flex flex-col gap-4">
+            <div className="px-6 py-4 flex flex-col gap-2">
               <Link
                 href="/"
                 onClick={() => handleClick("home")}
-                className={`block py-2 transition-colors ${
-                  active === "home" ? "text-blue-400" : "text-gray-300 hover:text-white"
-                }`}
+                className={mobileLinkClass("home")}
               >
                 Início
               </Link>
@@ -184,9 +200,7 @@ export default function Navbar() {
               <Link
                 href="/#servicos"
                 onClick={() => handleClick("servicos")}
-                className={`block py-2 transition-colors ${
-                  active === "servicos" ? "text-blue-400" : "text-gray-300 hover:text-white"
-                }`}
+                className={mobileLinkClass("servicos")}
               >
                 Serviços
               </Link>
@@ -194,9 +208,7 @@ export default function Navbar() {
               <Link
                 href="/#contato"
                 onClick={() => handleClick("contato")}
-                className={`block py-2 transition-colors ${
-                  active === "contato" ? "text-blue-400" : "text-gray-300 hover:text-white"
-                }`}
+                className={mobileLinkClass("contato")}
               >
                 Contato
               </Link>
