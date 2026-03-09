@@ -71,7 +71,17 @@ export default function Navbar() {
     setManual(true);
     setActive(section);
     setOpen(false);
-    setTimeout(() => setManual(false), 700);
+
+    // Se for contato, vai direto para o final da página
+    if (section === "contato") {
+      // Vai direto para o final sem animação (funciona em web e mobile)
+      setTimeout(() => {
+        window.scrollTo(0, document.documentElement.scrollHeight);
+        setManual(false);
+      }, 50);
+    } else {
+      setTimeout(() => setManual(false), 700);
+    }
   };
 
   /* ================= CLASSES ================= */
