@@ -34,12 +34,21 @@ export default function Navbar() {
     return () => window.removeEventListener("hashchange", syncActive);
   }, []);
 
-  /* ================= SCROLL SPY ================= */
+  /* ================= SCROLL SPY MELHORADO ================= */
   useEffect(() => {
     const sections: Section[] = ["home", "servicos", "contato"];
 
     const onScroll = () => {
       if (manual) return;
+
+      const scrollPosition = window.scrollY + window.innerHeight;
+      const pageHeight = document.documentElement.scrollHeight;
+
+      // Se está no final da página (últimos 200px), ativa contato
+      if (pageHeight - scrollPosition < 200) {
+        setActive("contato");
+        return;
+      }
 
       let closest: Section = "home";
       let min = Infinity;
@@ -76,7 +85,6 @@ export default function Navbar() {
       setManual(true);
       setTimeout(() => {
         window.scrollTo(0, document.documentElement.scrollHeight);
-        // Mantém o foco em contato mesmo depois do scroll
         setActive("contato");
         // Desativa manual após um tempo maior para garantir que não volta ao scroll spy
         setTimeout(() => setManual(false), 1000);
