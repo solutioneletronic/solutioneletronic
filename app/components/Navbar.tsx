@@ -66,7 +66,7 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, [manual]);
 
-  /* ================= CLICK ================= */
+  /* ================= CLICK HANDLER ================= */
   const handleClick = (section: Section) => {
     setManual(true);
     setActive(section);
@@ -96,11 +96,11 @@ export default function Navbar() {
       >
         <div className="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
 
-          {/* ===== LOGO (AJUSTADA) ===== */}
+          {/* LOGO */}
           <Link
             href="/"
             onClick={() => handleClick("home")}
-            className="flex items-center gap-3"
+            className="flex items-center gap-3 flex-shrink-0"
           >
             <Image
               src="/logo_menu.png"
@@ -108,10 +108,7 @@ export default function Navbar() {
               width={60}
               height={60}
               priority
-              className="
-                object-contain
-                drop-shadow-[0_0_8px_rgba(255,255,255,0.35)]
-              "
+              className="object-contain drop-shadow-[0_0_8px_rgba(255,255,255,0.35)]"
             />
             <span className="font-bold text-lg md:text-xl text-white">
               Solution Eletronic
@@ -136,7 +133,66 @@ export default function Navbar() {
             </Link>
           </nav>
 
+          {/* HAMBURGER MENU BUTTON */}
+          <button
+            onClick={() => setOpen(!open)}
+            className="md:hidden flex flex-col gap-1.5 relative z-20"
+            aria-label="Toggle menu"
+          >
+            <span
+              className={`w-6 h-0.5 bg-white transition-all duration-300 ${
+                open ? "rotate-45 translate-y-2" : ""
+              }`}
+            />
+            <span
+              className={`w-6 h-0.5 bg-white transition-all duration-300 ${
+                open ? "opacity-0" : ""
+              }`}
+            />
+            <span
+              className={`w-6 h-0.5 bg-white transition-all duration-300 ${
+                open ? "-rotate-45 -translate-y-2" : ""
+              }`}
+            />
+          </button>
         </div>
+
+        {/* MOBILE MENU */}
+        {open && (
+          <nav className="md:hidden bg-black/90 backdrop-blur-xl border-t border-white/10">
+            <div className="px-6 py-4 flex flex-col gap-4">
+              <Link
+                href="/"
+                onClick={() => handleClick("home")}
+                className={`block py-2 transition-colors ${
+                  active === "home" ? "text-blue-400" : "text-gray-300 hover:text-white"
+                }`}
+              >
+                Início
+              </Link>
+
+              <Link
+                href="/#servicos"
+                onClick={() => handleClick("servicos")}
+                className={`block py-2 transition-colors ${
+                  active === "servicos" ? "text-blue-400" : "text-gray-300 hover:text-white"
+                }`}
+              >
+                Serviços
+              </Link>
+
+              <Link
+                href="/#contato"
+                onClick={() => handleClick("contato")}
+                className={`block py-2 transition-colors ${
+                  active === "contato" ? "text-blue-400" : "text-gray-300 hover:text-white"
+                }`}
+              >
+                Contato
+              </Link>
+            </div>
+          </nav>
+        )}
       </header>
     </>
   );
