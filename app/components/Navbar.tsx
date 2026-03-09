@@ -245,7 +245,7 @@ export default function Navbar() {
               </Link>
 
               <Link
-                href="/#servicos"
+                href="/servicos"
                 onClick={handleClick("servicos")}
                 className={mobileLinkClass("servicos")}
               >
@@ -253,7 +253,7 @@ export default function Navbar() {
               </Link>
 
               <Link
-                href="/#contato"
+                href="/contato"
                 onClick={handleClick("contato")}
                 className={mobileLinkClass("contato")}
               >
