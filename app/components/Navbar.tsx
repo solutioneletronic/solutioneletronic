@@ -81,18 +81,18 @@ export default function Navbar() {
     setOpen(false);
 
     // Se for contato, vai direto para o final da página
-    //if (section === "contato") {
-    //  setManual(true);
-    //  setTimeout(() => {
-    //    window.scrollTo(0, document.documentElement.scrollHeight);
-    //    setActive("contato");
+    if (section === "contato") {
+      setManual(true);
+      setTimeout(() => {
+        window.scrollTo(0, document.documentElement.scrollHeight);
+        setActive("contato");
         // Desativa manual após um tempo maior para garantir que não volta ao scroll spy
-    //    setTimeout(() => setManual(false), 1000);
-      //}, 50);
-    //} else {
-    //  setManual(true);
-    //  setTimeout(() => setManual(false), 700);
-    //}
+        setTimeout(() => setManual(false), 1000);
+      }, 50);
+    } else {
+      setManual(true);
+      setTimeout(() => setManual(false), 700);
+    }
   };
 
   /* ================= CLASSES ================= */
