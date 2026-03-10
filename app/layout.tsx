@@ -15,17 +15,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR">
-      <body className="text-white bg-gradient-to-br from-black via-zinc-900 to-black min-h-screen">
+      <body className="text-white bg-gradient-to-br from-black via-zinc-900 to-black">
+  
+       {/* NAVBAR */}
+       <Navbar />
 
-  <Navbar />
+       {/* CONTEÚDO DAS PÁGINAS */}
+       {children}
 
-  <main className="relative z-10">
-    {children}
-  </main>
+       <Footer />
 
-  <Footer />
-
-</body>
+      </body>
     </html>
   );
 }
