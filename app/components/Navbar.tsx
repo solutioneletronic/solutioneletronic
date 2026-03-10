@@ -9,7 +9,7 @@ type Section = "home" | "servicos" | "contato";
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [active, setActive] = useState<Section>("home");
+  const [active, setActive] = useState<Section>();
   const [manual, setManual] = useState(false);
 
   /* ================= SCROLL HEADER ================= */
