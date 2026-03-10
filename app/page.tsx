@@ -8,7 +8,7 @@ export default function Home() {
     // pt-24: padding-top
     // bg-black: fundo preto
     // text-white: texto branco
-    <main className="pt-24 bg-black text-white">
+    <main className="pt-24 bg-black text-white min-h-screen">
 
       {/* ================= HERO SECTION ================= */}
       <section
