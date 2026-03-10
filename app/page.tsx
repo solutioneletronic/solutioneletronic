@@ -1,5 +1,6 @@
 // Importa o componente Image do Next.js para otimização de imagens
 import Image from "next/image";
+import { servicos } from "@/data/servicos";
 
 // Define e exporta o componente principal da página (Home)
 export default function Home() {
@@ -8,11 +9,10 @@ export default function Home() {
     // pt-24: padding-top
     // bg-black: fundo preto
     // text-white: texto branco
-    <main className="pt-24 bg-black text-white min-h-screen">
+    <main className="pt-24 bg-black text-white">
 
       {/* ================= HERO SECTION ================= */}
       <section
-      id="home"
         // max-w-7xl: largura máxima
         // mx-auto: centraliza horizontalmente
         // px-6 py-20: espaçamento interno
@@ -149,14 +149,7 @@ export default function Home() {
             // Grid responsivo
             className="grid sm:grid-cols-2 md:grid-cols-3 gap-8"
           >
-            {[
-              "Câmeras de Segurança",
-              "Controle de Acesso",
-              "Automação de Portões",
-              "Manutenção Eletrônica",
-              "Redes e Informática",
-              "Soluções Personalizadas",
-            ].map((servico, index) => (
+            {servicos.map((servico, index) => (
               <div
                 // key obrigatório para listas no React
                 key={index}
@@ -164,11 +157,10 @@ export default function Home() {
                 className="bg-black border border-zinc-700 rounded-xl p-6 hover:border-blue-500 transition"
               >
                 <h3 className="text-xl font-semibold mb-2">
-                  {servico}
+                  {servico.title}
                 </h3>
                 <p className="text-gray-400 text-sm">
-                  Tecnologia moderna com instalação profissional e suporte
-                  especializado.
+                  {servico.text}
                 </p>
               </div>
             ))}
@@ -176,10 +168,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ================= CONTATO ================= */}
+      {/* ================= CTA FINAL ================= */}
       <section
         // Espaçamento e centralização
-        id="contato"
         className="py-24 text-center px-6 animate-fadeIn"
       >
         <h2 className="text-3xl font-bold mb-4">
