@@ -15,7 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR">
-      <body className="bg-black text-white antialiased">
+      <body className="text-white bg-gradient-to-br from-black via-zinc-900 to-black">
         {/* NAVBAR */}
         <Navbar />
 
