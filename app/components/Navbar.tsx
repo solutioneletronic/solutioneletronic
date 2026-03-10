@@ -41,32 +41,21 @@ export default function Navbar() {
     const onScroll = () => {
       if (manual) return;
 
-      const scrollPosition = window.scrollY + window.innerHeight;
-      const pageHeight = document.documentElement.scrollHeight;
-
-      // Se está no final da página (últimos 200px), ativa contato
-      if (pageHeight - scrollPosition < 200) {
-        setActive("contato");
-        return;
-      }
-
-      let closest: Section = "home";
-      let min = Infinity;
-
+      const section: Section[] = ["home", "servicos", "contato"];
+      const scrollPosition = window.scrollY +120; // 120px para compensar o header
+      
+      let current: Section = "home";
+      
       sections.forEach((id) => {
-        const el = document.getElementById(id);
+        const el = document.getElementById(id); 
         if (!el) return;
 
-        const rect = el.getBoundingClientRect();
-        const distance = Math.abs(rect.top - 96);
+        const offsetTop = el.offsetTop;
 
-        if (rect.top <= 120 && distance < min) {
-          min = distance;
-          closest = id;
-        }
+        if (scrollPosition >= offsetTop) {current = id;}
       });
 
-      setActive(closest);
+      setActive(current);
     };
 
     window.addEventListener("scroll", onScroll);
