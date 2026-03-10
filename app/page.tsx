@@ -175,9 +175,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ================= CTA FINAL ================= */}
+      {/* ================= CONTATO ================= */}
       <section
         // Espaçamento e centralização
+        id="contato"
         className="py-24 text-center px-6 animate-fadeIn"
       >
         <h2 className="text-3xl font-bold mb-4">
