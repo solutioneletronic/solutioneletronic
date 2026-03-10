@@ -12,6 +12,7 @@ export default function Home() {
 
       {/* ================= HERO SECTION ================= */}
       <section
+      id="home"
         // max-w-7xl: largura máxima
         // mx-auto: centraliza horizontalmente
         // px-6 py-20: espaçamento interno
