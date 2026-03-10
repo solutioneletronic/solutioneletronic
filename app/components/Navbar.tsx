@@ -7,212 +7,167 @@ import Image from "next/image";
 type Section = "home" | "servicos" | "contato";
 
 export default function Navbar() {
+
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState<Section>("home");
   const [scrolled, setScrolled] = useState(false);
-  const [active, setActive] = useState<Section>();
-  const [manual, setManual] = useState(false);
 
-  /* ================= SCROLL HEADER ================= */
+  /* ================= HEADER SHADOW ================= */
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  /* ================= HASH SYNC ================= */
-  useEffect(() => {
-    const syncActive = () => {
-      const hash = window.location.hash;
-
-      if (hash === "#servicos") setActive("servicos");
-      else if (hash === "#contato") setActive("contato");
-      else setActive("home");
-    };
-
-    syncActive();
-    window.addEventListener("hashchange", syncActive);
-    return () => window.removeEventListener("hashchange", syncActive);
-  }, []);
-
-  /* ================= SCROLL SPY MELHORADO ================= */
-  useEffect(() => {
-    const sections: Section[] = ["home", "servicos", "contato"];
-
     const onScroll = () => {
-      if (manual) return;
-
-      const section: Section[] = ["home", "servicos", "contato"];
-      const scrollPosition = window.scrollY +120; // 120px para compensar o header
-      
-      let current: Section = "home";
-      
-      sections.forEach((id) => {
-        const el = document.getElementById(id); 
-        if (!el) return;
-
-        const offsetTop = el.offsetTop;
-
-        if (scrollPosition >= offsetTop) {current = id;}
-      });
-
-      setActive(current);
+      setScrolled(window.scrollY > 20);
     };
 
     window.addEventListener("scroll", onScroll);
-    onScroll();
-
     return () => window.removeEventListener("scroll", onScroll);
-  }, [manual]);
+  }, []);
 
-  /* ================= CLICK HANDLER ================= */
-  const handleClick = (section: Section) => {
-    setActive(section);
-    setOpen(false);
+  /* ================= SCROLL SPY PROFISSIONAL ================= */
+  useEffect(() => {
 
-    // Se for contato, vai direto para o final da página
-    if (section === "contato") {
-      setManual(true);
-      setActive("contato");
-      
-    } else {
-      setManual(true);
-      setTimeout(() => setManual(false), 700);
-    }
-  };
+    const sections = document.querySelectorAll("section");
 
-  /* ================= CLASSES ================= */
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActive(entry.target.id as Section);
+          }
+        });
+      },
+      {
+        rootMargin: "-40% 0px -55% 0px"
+      }
+    );
+
+    sections.forEach((section) => {
+      observer.observe(section);
+    });
+
+    return () => observer.disconnect();
+
+  }, []);
+
+  /* ================= LINK STYLE ================= */
+
   const linkClass = (id: Section) =>
     `relative pb-1 transition-all duration-300 ${
       active === id
         ? "text-white"
-        : "text-gray-300 hover:text-white"
+        : "text-gray-400 hover:text-white"
     }`;
 
   const glow = (id: Section) =>
     active === id && (
-      <span className="absolute left-0 -bottom-1 h-[2px] w-full bg-blue-500 shadow-[0_0_14px_rgba(59,130,246,0.9)]" />
+      <span className="absolute left-0 -bottom-1 h-[2px] w-full bg-blue-500 shadow-[0_0_12px_rgba(59,130,246,0.9)]" />
     );
 
-  const mobileLinkClass = (id: Section) =>
-    `block py-2 px-3 rounded transition-all duration-300 ${
+  const mobileLink = (id: Section) =>
+    `block py-2 px-3 rounded transition ${
       active === id
-        ? "text-white bg-blue-500/20 border-l-4 border-blue-500"
-        : "text-gray-300 hover:text-white border-l-4 border-transparent"
+        ? "bg-blue-500/20 text-white border-l-4 border-blue-500"
+        : "text-gray-300 border-l-4 border-transparent"
     }`;
 
   return (
-    <>
-      {/* HEADER */}
-      <header
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300
-        ${scrolled ? "bg-black/80 backdrop-blur-xl shadow-lg" : "bg-black/30 backdrop-blur"}`}
-      >
-        <div className="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
+    <header
+      className={`fixed top-0 w-full z-50 transition-all duration-300
+      ${scrolled ? "bg-black/80 backdrop-blur-xl shadow-lg" : "bg-black/40 backdrop-blur"}
+      `}
+    >
 
-          {/* LOGO */}
-          <Link
-            href="/"
-            onClick={() => handleClick("home")}
-            className="flex items-center gap-3 flex-shrink-0"
-          >
-            <Image
-              src="/logo_menu.png"
-              alt="Solution Eletronic"
-              width={60}
-              height={60}
-              priority
-              className="object-contain drop-shadow-[0_0_8px_rgba(255,255,255,0.35)]"
-            />
-            <span className="font-bold text-lg md:text-xl text-white">
-              Solution Eletronic
-            </span>
+      <div className="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
+
+        {/* LOGO */}
+
+        <Link href="/" className="flex items-center gap-3">
+
+          <Image
+            src="/logo_menu.png"
+            alt="Solution Eletronic"
+            width={60}
+            height={60}
+            priority
+          />
+
+          <span className="text-white font-bold text-lg">
+            Solution Eletronic
+          </span>
+
+        </Link>
+
+        {/* MENU DESKTOP */}
+
+        <nav className="hidden md:flex gap-10">
+
+          <Link href="#home" className={linkClass("home")}>
+            Início
+            {glow("home")}
           </Link>
 
-          {/* MENU DESKTOP */}
-          <nav className="hidden md:flex items-center gap-10">
-            <Link 
-              href="/" 
-              onClick={() => handleClick("home")} 
-              className={linkClass("home")}
+          <Link href="#servicos" className={linkClass("servicos")}>
+            Serviços
+            {glow("servicos")}
+          </Link>
+
+          <Link href="#contato" className={linkClass("contato")}>
+            Contato
+            {glow("contato")}
+          </Link>
+
+        </nav>
+
+        {/* BOTÃO MOBILE */}
+
+        <button
+          onClick={() => setOpen(!open)}
+          className="md:hidden flex flex-col gap-1.5"
+        >
+          <span className="w-6 h-0.5 bg-white"/>
+          <span className="w-6 h-0.5 bg-white"/>
+          <span className="w-6 h-0.5 bg-white"/>
+        </button>
+
+      </div>
+
+      {/* MENU MOBILE */}
+
+      {open && (
+
+        <nav className="md:hidden bg-black/95 backdrop-blur-xl border-t border-white/10">
+
+          <div className="px-6 py-4 flex flex-col gap-2">
+
+            <Link
+              href="#home"
+              onClick={() => setOpen(false)}
+              className={mobileLink("home")}
             >
               Início
-              {glow("home")}
             </Link>
 
-            <Link 
-              href="/#servicos" 
-              onClick={() => handleClick("servicos")} 
-              className={linkClass("servicos")}
+            <Link
+              href="#servicos"
+              onClick={() => setOpen(false)}
+              className={mobileLink("servicos")}
             >
               Serviços
-              {glow("servicos")}
             </Link>
 
-            <Link 
-              href="/#contato" 
-              onClick={() => handleClick("contato")} 
-              className={linkClass("contato")}
+            <Link
+              href="#contato"
+              onClick={() => setOpen(false)}
+              className={mobileLink("contato")}
             >
               Contato
-              {glow("contato")}
             </Link>
-          </nav>
 
-          {/* HAMBURGER MENU BUTTON */}
-          <button
-            onClick={() => setOpen(!open)}
-            className="md:hidden flex flex-col gap-1.5 relative z-20"
-            aria-label="Toggle menu"
-          >
-            <span
-              className={`w-6 h-0.5 bg-white transition-all duration-300 ${
-                open ? "rotate-45 translate-y-2" : ""
-              }`}
-            />
-            <span
-              className={`w-6 h-0.5 bg-white transition-all duration-300 ${
-                open ? "opacity-0" : ""
-              }`}
-            />
-            <span
-              className={`w-6 h-0.5 bg-white transition-all duration-300 ${
-                open ? "-rotate-45 -translate-y-2" : ""
-              }`}
-            />
-          </button>
-        </div>
+          </div>
 
-        {/* MOBILE MENU */}
-        {open && (
-          <nav className="md:hidden bg-black/90 backdrop-blur-xl border-t border-white/10">
-            <div className="px-6 py-4 flex flex-col gap-2">
-              <Link
-                href="/"
-                onClick={() => handleClick("home")}
-                className={mobileLinkClass("home")}
-              >
-                Início
-              </Link>
+        </nav>
 
-              <Link
-                href="/#servicos"
-                onClick={() => handleClick("servicos")}
-                className={mobileLinkClass("servicos")}
-              >
-                Serviços
-              </Link>
+      )}
 
-              <Link
-                href="/#contato"
-                onClick={() => handleClick("contato")}
-                className={mobileLinkClass("contato")}
-              >
-                Contato
-              </Link>
-            </div>
-          </nav>
-        )}
-      </header>
-    </>
+    </header>
   );
 }
